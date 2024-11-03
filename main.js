@@ -1,6 +1,7 @@
 import express from 'express';
 
 import { engine } from 'express-handlebars';
+import assistantOpenAI from './services/assistant.openAI.js';
 
 
 const app = express();
@@ -27,10 +28,15 @@ app.get('/', function (req, res) {
 });
 
 // Render chat view
-function renderChat(req, res) {
+async function renderChat(req, res) {
+    const messages = await assistantOpenAI.getRecentMessages();
+    const userInput = messages[0].message;
+    const assistantOutput = messages[1].message;
     res.render('chat', {
         title: 'Cooking Assistant - Chat',
         style: '/chat.css',
+        userMessage: userInput,
+        assistantMessage: assistantOutput
     });
 }
 
@@ -43,4 +49,6 @@ app.post('/c', function (req, res) {
     renderChat(req, res); // Gọi hàm render đã tạo
 });
 
+
+// Listen for access from user
 app.listen(3030, function () { });
