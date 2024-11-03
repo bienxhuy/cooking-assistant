@@ -44,9 +44,10 @@ async function renderChat(req, res) {
 app.get('/c', renderChat);
 
 // Route post
-app.post('/c', function (req, res) {
+app.post('/c', async function (req, res) {
     console.log(req.body);
-    renderChat(req, res); // Gọi hàm render đã tạo
+    const ret = await assistantOpenAI.newUserInput(req.body);
+    renderChat(req, res); 
 });
 
 
