@@ -1,7 +1,3 @@
-import OpenAI from "openai";
-const openai = new OpenAI();
-let conversationMessages = [];
-
 export default {
     getRecentMessages() {
         // Return defaut message at start
@@ -16,9 +12,18 @@ export default {
     },
 
     async addNewUserInput(userInput) {
-        // createChatRequest(userInput);
+        await createChatRequest(userInput);
     },
 };
+
+import OpenAI from "openai";
+const openai = new OpenAI();
+
+// Store chat history
+let conversationMessages = [{
+    role: "system", 
+    content: "You are a helpful cooking assistant. Always use the provided tools when specific cooking instructions or recipes are needed, but only call functions when necessary to ensure accuracy."
+}];
 
 async function createChatRequest(message) {
     // Push user message
