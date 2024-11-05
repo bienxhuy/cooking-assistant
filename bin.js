@@ -1,4 +1,4 @@
-
+import require from request;
 
 const request = require('request');
 
