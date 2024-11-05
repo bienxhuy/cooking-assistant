@@ -13,6 +13,7 @@
   "dependencies": {
     "express": "^4.21.1",
     "express-handlebars": "^8.0.1",
-    "openai": "^4.70.2"
+    "openai": "^4.70.2",
+    "require": "^2.4.20"
   }
 }
