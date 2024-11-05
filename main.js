@@ -30,8 +30,8 @@ app.get('/', function (req, res) {
 // Render chat view
 async function renderChat(req, res) {
     const messages = await assistantOpenAI.getRecentMessages();
-    const userInput = messages[0].message;
-    const assistantOutput = messages[1].message;
+    const userInput = messages[0].content;
+    const assistantOutput = messages[1].content;
     res.render('chat', {
         title: 'Cooking Assistant - Chat',
         style: '/chat.css',
@@ -46,7 +46,7 @@ app.get('/c', renderChat);
 // Route post
 app.post('/c', async function (req, res) {
     console.log(req.body);
-    const ret = await assistantOpenAI.newUserInput(req.body);
+    const ret = await assistantOpenAI.addNewUserInput(req.body.userInput);
     renderChat(req, res); 
 });
 
