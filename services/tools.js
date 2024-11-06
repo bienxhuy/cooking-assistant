@@ -83,7 +83,7 @@ export default [
         type: "function",
         function: {
             name: "list_all_areas",
-            description: "Retrieve a list of all areas. Each area contains only its name.",
+            description: "Retrieve a list of all areas that you have some cooking knowledges about these areas. Each area contains only its name.",
             parameters: {
                 type: "object",
                 properties: {},
