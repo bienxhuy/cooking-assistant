@@ -15,7 +15,7 @@ export default {
         return filterMealDetails(data.meals[0]);
     },
 
-    // Return bunch of meals has 'name' in their names, each one has full details
+    // Return list of meals has 'name' in their names, each one has full details
     async searchMealsByName(name) {
         const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
         // Fetch data from url
