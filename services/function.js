@@ -1,5 +1,3 @@
-import request from "request";
-
 export default {
     // Return a list of meals but only has 1 element, which has full details of a meal equivalent to provided meal ID
     async lookupFullMealDetailsById(mealID) {
@@ -14,7 +12,7 @@ export default {
             throw new Error(data.message);
         }
 
-        return data.meals[0];
+        return filterMealDetails(data.meals[0]);
     },
 
     // Return bunch of meals has 'name' in their names, each one has full details
@@ -30,7 +28,9 @@ export default {
             throw new Error(data.message);
         }
 
-        return data.meals;
+        return data.meals.map(element => {
+            return filterMealDetails(element);
+        })
     },
 
     // Return a list of meals but only has 1 element, which has full details of a random meal
@@ -46,7 +46,7 @@ export default {
             throw new Error(data.message);
         }
 
-        return data.meals[0];
+        return filterMealDetails(data.meals[0]);
     },
 
     // Return a list of all categories, each one has name only
@@ -67,7 +67,7 @@ export default {
 
     // Return a list of meals belong to provided category, each one has: meal name, meal ID, meal thumbnail
     async filterByCategory(category) {
-        const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`; 
+        const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`;
         // Fetch data from url
         const response = await fetch(url);
         // Parse data
@@ -83,7 +83,7 @@ export default {
 
     // Return a list contains all areas, each one has only area name
     async listAllAreas() {
-        const url = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list'; 
+        const url = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
         // Fetch data from url
         const response = await fetch(url);
         // Parse data
@@ -112,4 +112,32 @@ export default {
 
         return data.meals;
     }
+};
+
+
+
+// Filter important fields of a meal detail
+function filterMealDetails(meal) {
+    // Filter out needed fieldss
+    const filteredMeal = {
+        name: meal.strMeal,
+        instructions: meal.strInstructions,
+        image: meal.strMealThumb,
+        youtubeLink: meal.strYoutube,
+        ingredients: [],
+        measures: []
+    };
+
+    // Filter out redundant ingredients and measures
+    for (let i = 1; i <= 20; i++) {
+        const ingredient = meal[`strIngredient${i}`];
+        const measure = meal[`strMeasure${i}`];
+
+        if (ingredient && ingredient.trim() !== "" && measure && measure.trim() !== "") {
+            filteredMeal.ingredients.push(ingredient);
+            filteredMeal.measures.push(measure);
+        }
+    }
+
+    return filteredMeal;
 };
