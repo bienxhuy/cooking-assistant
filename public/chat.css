@@ -1,6 +1,6 @@
 .chat-box {
     overflow-y: scroll;
-    height: 300px;
+    height: 350px;
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
@@ -27,4 +27,11 @@
 
 .message.assistant .message-content {
     background-color: #eaeaea;
+}
+
+img {
+    border: 2px dashed gray;
+    border-radius: 20px;
+    margin-top: 10px;
+    width: 30%;
 }
