@@ -17,6 +17,8 @@ export default {
 };
 
 import OpenAI from "openai";
+import tools from "./tools";
+
 const openai = new OpenAI();
 
 // Store chat history
@@ -36,6 +38,8 @@ async function createChatRequest(message) {
     const completion = await openai.chat.completions.create({
         model: "gpt-4o-mini",
         messages: conversationMessages,
+        tools: tools,
+        tool_choice: "required",
     });
 
     console.log(completion.choices[0].message);
