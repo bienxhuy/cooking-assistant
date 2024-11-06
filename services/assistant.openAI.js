@@ -39,7 +39,6 @@ async function createChatRequest(message) {
         model: "gpt-4o-mini",
         messages: conversationMessages,
         tools: tools,
-        tool_choice: "required",
     });
 
     console.log(completion.choices[0].message);
