@@ -45,11 +45,13 @@ app.get('/c', renderChat);
 
 // Route post
 app.post('/c', async function (req, res) {
-    console.log(req.body);
+    console.log("\nRequest body:\n", req.body);
     const ret = await assistantOpenAI.addNewUserInput(req.body.userInput);
     renderChat(req, res); 
 });
 
 
 // Listen for access from user
-app.listen(3030, function () { });
+app.listen(3030, function () {
+    console.log("Start server on localhost:3030");
+});
