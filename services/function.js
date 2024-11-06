@@ -1,46 +1,115 @@
+import request from "request";
+
 export default {
-    // 1. Return all ingredients, each one has: name and description
-    async listAllIngredients() {
-
-    },
-
-    // 2. Return a list of meals has the ingredient, each one has: meal name, meal ID, meal thumbnail
-    async filterByMainIngredient(ingredient) {
-
-    },
-
-    // 3. Return a list of meals but only has 1 element, which has full details of a meal equivalent to provided meal ID
+    // Return a list of meals but only has 1 element, which has full details of a meal equivalent to provided meal ID
     async lookupFullMealDetailsById(mealID) {
+        const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`;
+        // Fetch data from url
+        const response = await fetch(url);
+        // Parse data
+        const data = await response.json();
 
+        // Error check
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        return data.meals[0];
     },
 
-    // 4. Return bucnh of meals has 'name' in their names,  each one has full details
+    // Return bunch of meals has 'name' in their names, each one has full details
     async searchMealsByName(name) {
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
+        // Fetch data from url
+        const response = await fetch(url);
+        // Parse data
+        const data = await response.json();
 
+        // Error check
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        return data.meals;
     },
 
-    // 5. Return a list of meals but only has 1 element, which has full details of a random meal
+    // Return a list of meals but only has 1 element, which has full details of a random meal
     async lookupASingleRandomMeal() {
+        const url = 'https://www.themealdb.com/api/json/v1/1/random.php';
+        // Fetch data from url
+        const response = await fetch(url);
+        // Parse data
+        const data = await response.json();
 
+        // Error check
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        return data.meals[0];
     },
 
-    // 6. Return a list of all categories, each one has: category name, category thumbnail, category description 
+    // Return a list of all categories, each one has name only
     async listAllMealCategories() {
+        const url = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
+        // Fetch data from url
+        const response = await fetch(url);
+        // Parse data
+        const data = await response.json();
 
+        // Error check
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        return data.meals;
     },
 
-    // 7. Return a list of meals belong to provided category, each one has: meal name, meal ID, meal thumbnail
+    // Return a list of meals belong to provided category, each one has: meal name, meal ID, meal thumbnail
     async filterByCategory(category) {
+        const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`; 
+        // Fetch data from url
+        const response = await fetch(url);
+        // Parse data
+        const data = await response.json();
 
+        // Error check
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        return data.meals;
     },
 
-    // 8. Return a list named meals, but contains all areas, each one has only area name
+    // Return a list contains all areas, each one has only area name
     async listAllAreas() {
+        const url = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list'; 
+        // Fetch data from url
+        const response = await fetch(url);
+        // Parse data
+        const data = await response.json();
 
+        // Error check
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        return data.meals;
     },
 
-    // 9. Return a list named meals but contains all meals belong to provided area, each one has: meal name, meal ID, meal thumbnail
+    // Return a list contains all meals belong to provided area, each one has: meal name, meal ID, meal thumbnail
     async filterByArea(area) {
-        
+        const url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`; // Thêm URL tương ứng ở đây
+        // Fetch data from url
+        const response = await fetch(url);
+        // Parse data
+        const data = await response.json();
+
+        // Error check
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        return data.meals;
     }
 };
