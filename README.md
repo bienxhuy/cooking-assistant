@@ -447,9 +447,9 @@ Let look closer at this
 
 ![banhmi1](images/banhmi1.png)
 
-![banhmi2](images/banhmi2.png)
-
 At first, the model do not know how to process our request. Although the tool call is success but model don't have the answer. So we tell it to try again and then it use another function, result is better.
+
+![banhmi2](images/banhmi2.png)
 
 ![banhmi3](images/banhmi3.png)
 
