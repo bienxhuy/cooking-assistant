@@ -379,14 +379,20 @@ async function processFunction(functionName, argument) {
 # Demo
 ## Tool & function call when we want to find specific item
 Chat UI
+
 ![chat-ui](images/chat-ui.png)
+
 Try to make a simple prompt
+
 ![user-input](images/user-input.png)
+
 Result will be
+
 ![llm-output](images/llm-output.png)
 
 Let break down how the data is processed, step by step. We have config our code so that in the console it will return all response log:
 1. User input & model response
+
 ![cookies1](images/cookie1.png)
 
 This show us how input data get in the program and how model response to it:
@@ -400,42 +406,55 @@ This show us how input data get in the program and how model response to it:
 - `refusal: null`: This is `null`, meaning there is no refusal in the response. It indicates that the request was processed successfully without any errors or refusals.
 
 2. Response to model
+
    ![cookie2](images/cookie2.png)
 
 We can see that `tool_call_id` is exactly the same of the model response. The role value of `'tool'` indicates that this response originates from an external tool or automated system, rather than directly from the user or LLM itself. This role designation shows that the response content has been fetched from a tool, such as an API or another automated system that processes or retrieves the necessary information based on the user's request.
 
 3. Model respone
+
    ![cookie3](images/cookie3.png)
 
 And here is the final output, after interprets the tool's response, the model sends final response back to the users.
 
 ## Try chain tools & function calling
 Let try with another function, below is we using `list_all_meal_categories`. From that chat UI, do another input:
+
 ![chat-ui-2](images/func-ui.png)
 
 Tool call 
+
 ![func-1](images/func-1.png)
 
 When model retrive a list of category, another tool call is made to find a list of meal in the chosen category
+
 ![func-2](images/func-2.png)
 
 This is the moment when model have data for meal, now it will made another tool call to fetch that meal detail
+
 ![func-3](images/func-3.png)
 
 And the final result is:
+
 ![func-4](images/func-4.png)
 
 When it come to this step, model will interprets the tool's response like above case and send back to end users.
+
 ![func-5](images/func-5.png)
 
 ## Interesting thing happened
-Let look closer at this <br>
+Let look closer at this
+
 ![banhmi1](images/banhmi1.png)
+
 ![banhmi2](images/banhmi2.png)
 
 At first, the model do not know how to process our request. Although the tool call is success but model don't have the answer. So we tell it to try again and then it use another function, result is better.
 
 ![banhmi3](images/banhmi3.png)
+
 ![banhmi4](images/banhmi4.png)
+
 ![banhmi5](images/banhmi5.png)
+
 ![banhmi6](images/banhmi6.png)
