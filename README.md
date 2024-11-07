@@ -275,10 +275,10 @@ To specifies that this is a function call, we use `type: "function"` . In the co
 ### 2. **Details**:
 Function Name and Description:
 - `name: "lookup_full_meal_details_by_id"`: This is the name of the function defined, used to identify and call. When above tool is use, it will call this function.
-- `description`: Provides a description of the function's purpose. In this case, the function is used to retrieve detailed information about a meal via its `mealID`, including the meal name, instructions, image, guide video, ingredients, and equivalent measures.
+- `description`: Provides a description of the function's purpose. In this case, the function is used to retrieve detailed information about a meal via its `mealID`, including the meal name, instructions, image, guide video, ingredients, and equivalent measures. The description should be 
 ### 3. **Parameters**:
 Parameter Definition:
-- In `parameters`, an object `properties` is declared to describe the parameters that the function requires. In thi case, this function requires only one parameter: `mealID`  `string` parameter, representing the unique ID of the meal whose details are being requested.
+- In `parameters`, an object `properties` is declared to describe the parameters that the function requires. In thi case, this function requires only one parameter: `mealID`  `string` parameter, representing the unique ID of the meal whose details are being requested. **The description should clearly describe the tool's function, or sometimes include cases tool should be called. However, it should not be too long, as it will waste tokens**.
 
 Required Parameters:
 - `required: ["mealID"]`: Ensures that `mealID` is a required parameter when calling this function.
