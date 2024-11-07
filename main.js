@@ -53,5 +53,5 @@ app.post('/c', async function (req, res) {
 
 // Listen for access from user
 app.listen(3030, function () {
-    console.log("Start server on localhost:3030");
+    console.log("Start server on http://localhost:3030/c");
 });
