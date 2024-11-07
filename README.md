@@ -60,6 +60,7 @@ To support the project, we have created many function in the list below, you can
 
 **List of function:**
 * **1. lookupFullMealDetailsById:**  Return a list of meals but only has 1 element, which has full details of a meal equivalent to provided meal ID
+* 
 * **2. searchMealsByName:** Return list of meals has 'name' in their names, each one has full details 
 * **3. lookupASingleRandomMeal:** Return a list of meals but only has 1 element, which has full details of a random meal 
 * **4. listAllMealCategories:** Return a list of all categories, each one has name only 
