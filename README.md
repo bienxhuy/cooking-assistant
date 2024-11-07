@@ -416,7 +416,7 @@ Let try with another function, below is we using `list_all_meal_categories`. Fro
 Tool call 
 ![func-1](images/func-1.png)
 
-When model retrive a list of category, another tool call is made to find a list of meal
+When model retrive a list of category, another tool call is made to find a list of meal in the chosen category
 ![func-2](images/func-2.png)
 
 This is the moment when model have data for meal, now it will made another tool call to fetch that meal detail
