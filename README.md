@@ -429,7 +429,7 @@ When it come to this step, model will interprets the tool's response like above 
 ![func-5](images/func-5.png)
 
 ## Interesting thing happened
-Let look closer at this
+Let look closer at this <br>
 ![banhmi1](images/banhmi1.png)
 ![banhmi2](images/banhmi2.png)
 
