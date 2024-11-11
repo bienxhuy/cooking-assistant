@@ -21,7 +21,7 @@ export default [
         type: "function",
         function: {
             name: "search_meals_by_name",
-            description: "Search for all meals that contain the given name. Each meal contains name, instructions, image, guide video, ingredients, and equivalent measures.",
+            description: "Search for all meals that contain the given input. Each meal contains name, instructions, image, guide video, ingredients, and equivalent measures.",
             parameters: {
                 type: "object",
                 properties: {
@@ -83,7 +83,7 @@ export default [
         type: "function",
         function: {
             name: "list_all_areas",
-            description: "Retrieve a list of all areas that you have some cooking knowledges about these areas. Each area contains only its name.",
+            description: "Retrieve a list of all areas, regions, or countries for which cooking data is available. Each item in the list should contain only the name of the area.",
             parameters: {
                 type: "object",
                 properties: {},
