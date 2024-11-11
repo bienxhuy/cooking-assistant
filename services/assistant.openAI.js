@@ -74,7 +74,7 @@ async function createChatRequest(message) {
                     const argument = element.function.arguments ? JSON.parse(element.function.arguments) : {};
 
                     // Track on server
-                    console.log(`\nFunction called: ${functionName}\nArguments:${element.function.arguments}`);
+                    console.log(`\nFunction called: ${functionName}\nArguments: ${element.function.arguments}`);
 
                     // Process function
                     const functionResult = await processFunction(functionName, argument);
