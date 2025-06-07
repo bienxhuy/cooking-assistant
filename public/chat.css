@@ -1,9 +1,13 @@
 .chat-box {
-    overflow-y: scroll;
-    height: 350px;
-    border: 1px solid #ccc;
+    min-height: 350px;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
     padding: 10px;
-    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    transition: max-height 0.3s ease;
+    flex-shrink: 1;
 }
 
 .message {
@@ -27,6 +31,12 @@
 
 .message.assistant .message-content {
     background-color: #eaeaea;
+}
+
+form {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    background-color: white;
 }
 
 img {
