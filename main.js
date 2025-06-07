@@ -17,41 +17,41 @@ app.use(express.urlencoded({
     extended: true
 }))
 
-
 // ROUTING
 
 // Route home
-app.get('/', function (req, res) {
-    res.render('home', {
-        title: 'Cooking Assistant',
-    });
-});
+app.get('/', renderChat);
 
-// Render chat view
-async function renderChat(req, res) {
-    const messages = await assistantOpenAI.getRecentMessages();
+function renderChat(req, res) {
+    const messages = assistantOpenAI.getRecentMessages();
     const userInput = messages[0].content;
     const assistantOutput = messages[1].content;
-    res.render('chat', {
-        title: 'Cooking Assistant - Chat',
+    res.render('home', {
+        layout: 'main',
+        title: 'ChatBot',
         style: '/chat.css',
         userMessage: userInput,
         assistantMessage: assistantOutput
     });
 }
 
-// Route get
-app.get('/c', renderChat);
 
-// Route post
-app.post('/c', async function (req, res) {
+// Route post to add message
+app.post('/', respond);
+
+async function respond(req, res) {
     console.log("\nRequest body:\n", req.body);
-    const ret = await assistantOpenAI.addNewUserInput(req.body.userInput);
-    renderChat(req, res); 
-});
+    await assistantOpenAI.addNewUserInput(req.body.userInput);
+    const messages = await assistantOpenAI.getRecentMessages();
+    res.json({
+        userMessage: messages[0].content,
+        assistantMessage: messages[1].content
+    });
+}
+
 
 
 // Listen for access from user
 app.listen(3030, function () {
-    console.log("Start server on http://localhost:3030/c");
+    console.log("App is running on port 3030");
 });
