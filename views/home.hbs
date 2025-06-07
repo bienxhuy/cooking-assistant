@@ -16,7 +16,6 @@
     </div>
 </form>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
     document.getElementById('chatForm').addEventListener('submit', async function (e) {
         e.preventDefault();
@@ -46,7 +45,6 @@
             });
             const data = await res.json();
             let assistantMessage = data.assistantMessage;
-            assistantMessage = marked.parse(assistantMessage);
 
             chatBox.insertAdjacentHTML('beforeend', `
                 <div class="message assistant">

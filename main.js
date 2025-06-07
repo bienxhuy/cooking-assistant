@@ -1,6 +1,7 @@
 import express from 'express';
 
 import { engine } from 'express-handlebars';
+import { marked } from 'marked';
 import assistantOpenAI from './services/assistant.openAI.js';
 
 
@@ -24,8 +25,8 @@ app.get('/', renderChat);
 
 function renderChat(req, res) {
     const messages = assistantOpenAI.getRecentMessages();
-    const userInput = messages[0].content;
-    const assistantOutput = messages[1].content;
+    const userInput = marked.parse(messages[0].content ?? '');
+    const assistantOutput = marked.parse(messages[1].content ?? '');
     res.render('home', {
         layout: 'main',
         title: 'ChatBot',
@@ -44,8 +45,8 @@ async function respond(req, res) {
     await assistantOpenAI.addNewUserInput(req.body.userInput);
     const messages = await assistantOpenAI.getRecentMessages();
     res.json({
-        userMessage: messages[0].content,
-        assistantMessage: messages[1].content
+        userMessage: marked.parse(messages[0].content ?? ''),
+        assistantMessage: marked.parse(messages[1].content ?? '')
     });
 }
 
