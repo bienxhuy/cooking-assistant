@@ -12,6 +12,9 @@ export default {
             throw new Error(data.message);
         }
 
+        if (!data.meals || data.meals.length === 0) {
+            return { error: "No meal found with the provided ID."};
+        }
         return filterMealDetails(data.meals[0]);
     },
 
@@ -26,6 +29,10 @@ export default {
         // Error check
         if (!response.ok) {
             throw new Error(data.message);
+        }
+
+        if (!data.meals || data.meals.length === 0) {
+            return { error: "No meals found with the provided name." };
         }
 
         return data.meals.map(element => {
@@ -46,6 +53,9 @@ export default {
             throw new Error(data.message);
         }
 
+        if (!data.meals || data.meals.length === 0) {
+            return { error: "No random meal found." };
+        }
         return filterMealDetails(data.meals[0]);
     },
 
@@ -62,6 +72,9 @@ export default {
             throw new Error(data.message);
         }
 
+        if (!data.meals || data.meals.length === 0) {
+            return { error: "No meal categories found." };
+        }
         return data.meals;
     },
 
@@ -78,6 +91,9 @@ export default {
             throw new Error(data.message);
         }
 
+        if (!data.meals || data.meals.length === 0) {
+            return { error: "No meals found in the provided category." };
+        }
         return data.meals;
     },
 
@@ -94,6 +110,9 @@ export default {
             throw new Error(data.message);
         }
 
+        if (!data.meals || data.meals.length === 0) {
+            return { error: "No meal areas found." };
+        }
         return data.meals;
     },
 
@@ -109,7 +128,9 @@ export default {
         if (!response.ok) {
             throw new Error(data.message);
         }
-
+        if (!data.meals || data.meals.length === 0) {
+            return { error: "No meals found in the provided area." };
+        }
         return data.meals;
     }
 };
